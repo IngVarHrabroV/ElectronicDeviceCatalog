@@ -28,21 +28,28 @@
         <form method="post" action="edit">
             <input type="number" name="productID" placeholder="Введите ID товара">
             <br>
-            Редактируем:
+            Что редактируем:
             <select name="kindOfEditInformation">
                 <option value="editProductName" selected>Имя товара</option>
                 <option value="editProductCategory">Категорию товара</option>
             </select>
+            ?
             <br>
             <input type="text" name="editInformation" placeholder="Введите изменения">
             <button type="submit">Внести изменения</button>
         </form>
+        {{#idForEditDidntFound}}
+            ID = {{editingId}} didn't found!
+        {{/idForEditDidntFound}}
 
         <p>Удалить товар</p>
         <form method="post" action="delete">
             <input type="number" name="productID" placeholder="Введите ID товара">
             <button type="submit">Удалить товар</button>
         </form>
+        {{#idForDeleteDidntFound}}
+            ID = {{deletingId}} didn't found!
+        {{/idForDeleteDidntFound}}
     </div>
 
     <div>

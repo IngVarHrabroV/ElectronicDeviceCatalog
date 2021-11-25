@@ -62,6 +62,12 @@ public class MainController {
 
     @PostMapping("/delete")
     public String addProducts(@RequestParam Integer productID, Map<String, Object> model) {
+        if (!productsRepository.existsById(productID)) {
+            model.put("idForDeleteDidntFound", true);
+            model.put("deletingId", productID);
+            return "main";
+        }
+
         productsRepository.delete(productsRepository.findById(productID));
 
         Iterable<Product> allProducts = productsRepository.findAll();
@@ -75,6 +81,13 @@ public class MainController {
                               @RequestParam String kindOfEditInformation,
                               @RequestParam String editInformation,
                               Map<String, Object> model) {
+
+        if (!productsRepository.existsById(productID)) {
+            model.put("idForEditDidntFound", true);
+            model.put("editingId", productID);
+            return "main";
+        }
+
         Product productForEdit = productsRepository.findById(productID);
 
         if (kindOfEditInformation.equals("editProductName")) {
