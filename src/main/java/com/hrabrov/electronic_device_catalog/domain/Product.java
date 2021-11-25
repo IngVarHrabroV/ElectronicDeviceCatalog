@@ -7,29 +7,29 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Goods {
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    String goodsName;
+    String productName;
     String category;
 
-    public Goods() {
+    public Product() {
 
     }
 
-    public Goods(String goodsName, String category) {
-        this.goodsName = goodsName;
+    public Product(String productName, String category) {
+        this.productName = productName;
         this.category = category;
     }
 
-    public String getGoodsName() {
-        return goodsName;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setGoodsName(String goodsName) {
-        this.goodsName = goodsName;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public String getCategory() {

@@ -1,7 +1,7 @@
 package com.hrabrov.electronic_device_catalog.controller;
 
-import com.hrabrov.electronic_device_catalog.domain.Goods;
-import com.hrabrov.electronic_device_catalog.repositories.GoodsRepository;
+import com.hrabrov.electronic_device_catalog.domain.Product;
+import com.hrabrov.electronic_device_catalog.repositories.ProductsRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,10 +10,10 @@ import java.util.Map;
 
 @Controller
 public class MainController {
-    private GoodsRepository goodsRepository;
+    private ProductsRepository productsRepository;
 
-    public MainController(GoodsRepository goodsRepository) {
-        this.goodsRepository = goodsRepository;
+    public MainController(ProductsRepository productsRepository) {
+        this.productsRepository = productsRepository;
     }
 
     @GetMapping("/")
@@ -23,28 +23,28 @@ public class MainController {
 
     @GetMapping("/main")
     public String main(Map<String, Object> model) {
-        Iterable<Goods> allGoods = goodsRepository.findAll();
-        model.put("goods", allGoods);
+        Iterable<Product> allProducts = productsRepository.findAll();
+        model.put("products", allProducts);
         return "main";
     }
 
     @PostMapping("/main")
-    public String addGoods(@RequestParam String goodsName, @RequestParam String category,
-                           Map<String, Object> model) {
-        Goods newGoods = new Goods(goodsName, category);
-        goodsRepository.save(newGoods);
+    public String addProducts(@RequestParam String productName, @RequestParam String category,
+                              Map<String, Object> model) {
+        Product newProduct = new Product(productName, category);
+        productsRepository.save(newProduct);
 
-        Iterable<Goods> allGoods = goodsRepository.findAll();
-        model.put("goods", allGoods);
+        Iterable<Product> allProducts = productsRepository.findAll();
+        model.put("products", allProducts);
 
         return "main";
     }
 
     @PostMapping("/filter")
-    public String searchGoodsByCategory(@RequestParam String filter, Map<String, Object> model) {
-        List<Goods> findGoods = goodsRepository.findByCategory(filter);
+    public String searchProductsByCategory(@RequestParam String filter, Map<String, Object> model) {
+        List<Product> findProduct = productsRepository.findByCategory(filter);
 
-        model.put("goods", findGoods);
+        model.put("products", findProduct);
 
         return "main";
     }

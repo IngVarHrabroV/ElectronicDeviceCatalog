@@ -19,7 +19,7 @@
     <div>
         <p>Добавить товар</p>
         <form method="post" action="main">
-            <input type="text" name="goodsName" placeholder="Введите название товара">
+            <input type="text" name="productName" placeholder="Введите название товара">
             <input type="text" name="category" placeholder="Введите категорию">
             <button type="submit">Добавить товар в список</button>
         </form>
@@ -40,13 +40,13 @@
             <th style="width: 150px">Goods name</th>
             <th>Category</th>
         </tr>
-        {{#goods}}
+        {{#products}}
             <tr>
                 <td>{{id}}</td>
-                <td>{{goodsName}}</td>
+                <td>{{productName}}</td>
                 <td>{{category}}</td>
             </tr>
-        {{/goods}}
+        {{/products}}
     </table>
 
 </body>
