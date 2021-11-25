@@ -16,12 +16,18 @@
 </style>
 
 <body>
+    <form method="post" action="logout" >
+        <input type="submit" value="Sign Out"/>
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}">
+    </form>
+
     <div>
         <p>Добавить товар</p>
         <form method="post" action="main">
             <input type="text" name="productName" placeholder="Введите название товара">
             <input type="text" name="category" placeholder="Введите категорию">
             <button type="submit">Добавить товар в список</button>
+            <input type="hidden" name="_csrf" value="{{_csrf.token}}">
         </form>
 
         <p>Редактировать информацию о товаре</p>
@@ -37,6 +43,7 @@
             <br>
             <input type="text" name="editInformation" placeholder="Введите изменения">
             <button type="submit">Внести изменения</button>
+            <input type="hidden" name="_csrf" value="{{_csrf.token}}">
         </form>
         {{#idForEditDidntFound}}
             ID = {{editingId}} didn't found!
@@ -46,6 +53,7 @@
         <form method="post" action="delete">
             <input type="number" name="productID" placeholder="Введите ID товара">
             <button type="submit">Удалить товар</button>
+            <input type="hidden" name="_csrf" value="{{_csrf.token}}">
         </form>
         {{#idForDeleteDidntFound}}
             ID = {{deletingId}} didn't found!
@@ -57,6 +65,7 @@
         <form method="post" action="filter">
             <input type="text" name="filter" placeholder="Введите категорию">
             <button type="submit">Найти товары</button>
+            <input type="hidden" name="_csrf" value="{{_csrf.token}}">
         </form>
     </div>
 
@@ -86,6 +95,7 @@
 
     <form method="get" action="main">
         <button type="submit">Показать все товары</button>
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}">
     </form>
 
 </body>
