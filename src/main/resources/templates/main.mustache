@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Main page</title>
+</head>
+<body>
+    <div>
+        <form method="post">
+            <input type="text" name="goodsName" placeholder="Введите название товара">
+            <input type="text" name="category" placeholder="Введите категорию">
+            <button type="submit">Добавить товар в список</button>
+        </form>
+    </div>
+
+
+    <h2>Список товаров</h2>
+    {{#allGoods}}
+        <div>
+            <b>{{id}}</b>
+            <span>{{goodsName}}</span>
+            <span>{{category}}</span>
+        </div>
+    {{/allGoods}}
+
+
+</body>
+</html>
