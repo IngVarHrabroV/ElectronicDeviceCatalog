@@ -3,6 +3,7 @@ package com.hrabrov.electronic_device_catalog.controller;
 import com.hrabrov.electronic_device_catalog.domain.Product;
 import com.hrabrov.electronic_device_catalog.repositories.ProductsRepository;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -60,9 +61,9 @@ public class MainController {
         return "main";
     }
 
-    @PostMapping("/delete")
+    @DeleteMapping("/delete")
     public String addProducts(@RequestParam String productID, Map<String, Object> model) {
-        productsRepository.deleteById(23L);
+        productsRepository.delete(productsRepository.findById(Integer.parseInt(productID)));
 
         Iterable<Product> allProducts = productsRepository.findAll();
         model.put("products", allProducts);
