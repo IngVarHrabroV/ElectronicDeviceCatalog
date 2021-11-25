@@ -61,13 +61,36 @@ public class MainController {
         return "main";
     }
 
-    @DeleteMapping("/delete")
-    public String addProducts(@RequestParam String productID, Map<String, Object> model) {
-        productsRepository.delete(productsRepository.findById(Integer.parseInt(productID)));
+    @PostMapping("/delete")
+    public String addProducts(@RequestParam Integer productID, Map<String, Object> model) {
+        productsRepository.delete(productsRepository.findById(productID));
 
         Iterable<Product> allProducts = productsRepository.findAll();
         model.put("products", allProducts);
 
         return "main";
     }
+
+    @PostMapping("/edit")
+    public String editProduct(@RequestParam Integer productID,
+                              @RequestParam String kindOfEditInformation,
+                              @RequestParam String editInformation,
+                              //@RequestParam String
+                              Map<String, Object> model) {
+        Product productForEdit = productsRepository.findById(productID);
+
+        if (kindOfEditInformation.equals("editProductName")) {
+            productForEdit.setProductName(editInformation);
+        } else {
+            productForEdit.setCategory(editInformation);
+        }
+
+        productsRepository.save(productForEdit);
+
+        Iterable<Product> allProducts = productsRepository.findAll();
+        model.put("products", allProducts);
+
+        return "main";
+    }
+
 }

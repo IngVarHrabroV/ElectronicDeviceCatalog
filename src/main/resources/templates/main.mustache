@@ -24,9 +24,23 @@
             <button type="submit">Добавить товар в список</button>
         </form>
 
+        <p>Редактировать информацию о товаре</p>
+        <form method="post" action="edit">
+            <input type="number" name="productID" placeholder="Введите ID товара">
+            <br>
+            Редактируем:
+            <select name="kindOfEditInformation">
+                <option value="editProductName" selected>Имя товара</option>
+                <option value="editProductCategory">Категорию товара</option>
+            </select>
+            <br>
+            <input type="text" name="editInformation" placeholder="Введите изменения">
+            <button type="submit">Внести изменения</button>
+        </form>
+
         <p>Удалить товар</p>
         <form method="post" action="delete">
-            <input type="text" name="productID" placeholder="Введите ID товара">
+            <input type="number" name="productID" placeholder="Введите ID товара">
             <button type="submit">Удалить товар</button>
         </form>
     </div>
@@ -34,7 +48,7 @@
     <div>
         <p>Найти товар</p>
         <form method="post" action="filter">
-            <input type="text" name="filter" placeholder="введите категорию">
+            <input type="text" name="filter" placeholder="Введите категорию">
             <button type="submit">Найти товары</button>
         </form>
     </div>
@@ -43,7 +57,7 @@
     <table >
         <tr>
             <th>Id</th>
-            <th style="width: 150px">Goods name</th>
+            <th style="width: auto">Products name</th>
             <th>Category</th>
         </tr>
         {{#products}}
