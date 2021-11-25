@@ -3,7 +3,6 @@ package com.hrabrov.electronic_device_catalog.controller;
 import com.hrabrov.electronic_device_catalog.domain.Product;
 import com.hrabrov.electronic_device_catalog.repositories.ProductsRepository;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,7 +12,7 @@ import java.util.Map;
 
 @Controller
 public class MainController {
-    private ProductsRepository productsRepository;
+    private final ProductsRepository productsRepository;
 
     public MainController(ProductsRepository productsRepository) {
         this.productsRepository = productsRepository;
@@ -75,7 +74,6 @@ public class MainController {
     public String editProduct(@RequestParam Integer productID,
                               @RequestParam String kindOfEditInformation,
                               @RequestParam String editInformation,
-                              //@RequestParam String
                               Map<String, Object> model) {
         Product productForEdit = productsRepository.findById(productID);
 
@@ -92,5 +90,4 @@ public class MainController {
 
         return "main";
     }
-
 }
