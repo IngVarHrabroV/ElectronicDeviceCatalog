@@ -3,7 +3,9 @@ package com.hrabrov.electronic_device_catalog.controller;
 import com.hrabrov.electronic_device_catalog.domain.Product;
 import com.hrabrov.electronic_device_catalog.repositories.ProductsRepository;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Map;
@@ -42,9 +44,28 @@ public class MainController {
 
     @PostMapping("/filter")
     public String searchProductsByCategory(@RequestParam String filter, Map<String, Object> model) {
-        List<Product> findProduct = productsRepository.findByCategory(filter);
 
-        model.put("products", findProduct);
+        if (filter == null || filter.isEmpty()) {
+            model.put("categoryNotEntered", true);
+        } else {
+            List<Product> findProduct = productsRepository.findByCategory(filter);
+
+            if (findProduct.isEmpty()) {
+                model.put("productDidntFound", true);
+            }
+
+            model.put("products", findProduct);
+        }
+
+        return "main";
+    }
+
+    @PostMapping("/delete")
+    public String addProducts(@RequestParam String productID, Map<String, Object> model) {
+        productsRepository.deleteById(23L);
+
+        Iterable<Product> allProducts = productsRepository.findAll();
+        model.put("products", allProducts);
 
         return "main";
     }

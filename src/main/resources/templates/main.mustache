@@ -23,6 +23,12 @@
             <input type="text" name="category" placeholder="Введите категорию">
             <button type="submit">Добавить товар в список</button>
         </form>
+
+        <p>Удалить товар</p>
+        <form method="post" action="delete">
+            <input type="text" name="productID" placeholder="Введите ID товара">
+            <button type="submit">Удалить товар</button>
+        </form>
     </div>
 
     <div>
@@ -48,6 +54,18 @@
             </tr>
         {{/products}}
     </table>
+
+    {{#productDidntFound}}
+        Product didn't found!
+    {{/productDidntFound}}
+
+    {{#categoryNotEntered}}
+        Category not entered!
+    {{/categoryNotEntered}}
+
+    <form method="get" action="main">
+        <button type="submit">Показать все товары</button>
+    </form>
 
 </body>
 </html>
