@@ -5,22 +5,19 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login page</title>
+    <title>Registration page</title>
 </head>
 <body>
-<h1>Login</h1>
-
-{{#authorizationError}}
-    <b>Неверный логин или пароль</b>
-{{/authorizationError}}
-
-<form method="post" action="login">
+<h1>Registration page</h1>
+{{#message}}
+    {{message}}
+{{/message}}
+<form method="post" action="registration">
     <div><label> User Name : <input type="text" name="username"/> </label></div>
     <div><label> Password: <input type="password" name="password"/> </label></div>
-    <div><input type="submit" value="Войти"/></div>
+    <div><input type="submit" value="Зарегистрироваться"/></div>
     <input type="hidden" name="_csrf" value="{{_csrf.token}}">
 </form>
-<a href="/registration">Зарегистрироваться?</a>
-
+<a href="/login">На страницу логина</a>
 </body>
 </html>
