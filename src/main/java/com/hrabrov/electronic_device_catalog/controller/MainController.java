@@ -26,9 +26,23 @@ public class MainController {
     }
 
     @GetMapping("/main")
-    public String main(Map<String, Object> model) {
+    public String main(@RequestParam(required = false, defaultValue = "") String filter,
+                       Map<String, Object> model) {
+
         Iterable<Product> allProducts = productsRepository.findAll();
-        model.put("products", allProducts);
+
+        if (filter == null || filter.isEmpty()) {
+            model.put("products", allProducts);
+        } else {
+            List<Product> findProducts = productsRepository.findByCategory(filter);
+
+            if (findProducts.isEmpty()) {
+                model.put("productDidntFound", true);
+            }
+
+            model.put("products", findProducts);
+        }
+
         return "main";
     }
 
@@ -43,24 +57,6 @@ public class MainController {
 
         Iterable<Product> allProducts = productsRepository.findAll();
         model.put("products", allProducts);
-
-        return "main";
-    }
-
-    @PostMapping("/filter")
-    public String searchProductsByCategory(@RequestParam String filter, Map<String, Object> model) {
-
-        if (filter == null || filter.isEmpty()) {
-            model.put("categoryNotEntered", true);
-        } else {
-            List<Product> findProduct = productsRepository.findByCategory(filter);
-
-            if (findProduct.isEmpty()) {
-                model.put("productDidntFound", true);
-            }
-
-            model.put("products", findProduct);
-        }
 
         return "main";
     }

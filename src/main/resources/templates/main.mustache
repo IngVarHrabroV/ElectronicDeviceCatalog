@@ -62,10 +62,9 @@
 
     <div>
         <p>Найти товар</p>
-        <form method="post" action="filter">
+        <form method="get" action="main">
             <input type="text" name="filter" placeholder="Введите категорию">
             <button type="submit">Найти товары</button>
-            <input type="hidden" name="_csrf" value="{{_csrf.token}}">
         </form>
     </div>
 
@@ -89,13 +88,8 @@
         Product didn't found!
     {{/productDidntFound}}
 
-    {{#categoryNotEntered}}
-        Category not entered!
-    {{/categoryNotEntered}}
-
     <form method="get" action="main">
         <button type="submit">Показать все товары</button>
-        <input type="hidden" name="_csrf" value="{{_csrf.token}}">
     </form>
 
 </body>
