@@ -1,10 +1,7 @@
 package com.hrabrov.electronic_device_catalog.domain;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Product {
@@ -15,9 +12,7 @@ public class Product {
     private String productName;
     private String category;
 
-    public Product() {
-
-    }
+    public Product() {}
 
     public Product(String productName, String category) {
         this.productName = productName;

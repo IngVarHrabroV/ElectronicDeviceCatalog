@@ -1,7 +1,9 @@
 package com.hrabrov.electronic_device_catalog.controller;
 
 import com.hrabrov.electronic_device_catalog.domain.Product;
+import com.hrabrov.electronic_device_catalog.domain.User;
 import com.hrabrov.electronic_device_catalog.repositories.ProductsRepository;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,8 +33,11 @@ public class MainController {
     }
 
     @PostMapping("/main")
-    public String addProducts(@RequestParam String productName, @RequestParam String category,
-                              Map<String, Object> model) {
+    public String addProducts(
+            @RequestParam String productName,
+            @RequestParam String category,
+            Map<String, Object> model
+    ) {
         Product newProduct = new Product(productName, category);
         productsRepository.save(newProduct);
 
