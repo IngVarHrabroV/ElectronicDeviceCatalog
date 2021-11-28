@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Set;
+import java.util.StringJoiner;
 
 @Entity
 @Table(name = "usr")
@@ -66,6 +67,16 @@ public class User implements UserDetails {
 
     public Set<Role> getRoles() {
         return roles;
+    }
+
+    public String getRolesAsString() {
+        StringJoiner rolesAsString = new StringJoiner(", ");
+
+        for (Role role : roles) {
+            rolesAsString.add(role.name()) ;
+        }
+
+        return rolesAsString.toString();
     }
 
     public void setRoles(Set<Role> roles) {

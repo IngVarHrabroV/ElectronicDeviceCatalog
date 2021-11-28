@@ -20,6 +20,11 @@
 </style>
 
 <body>
+    <h1>Главная страница</h1>
+
+    <b>Имя пользователя:</b> {{username}} <br>
+    <b>Права доступа:</b> {{roles}}
+
     <form method="post" action="logout" >
         <input type="submit" value="Sign Out"/>
         <input type="hidden" name="_csrf" value="{{_csrf.token}}">
@@ -38,10 +43,10 @@
     </form>
 
     <div>
-        <p>Найти товар</p>
+        <h2>Найти товар</h2>
         <form method="get" action="main">
             <input type="text" name="filter" placeholder="Введите категорию">
-            <button type="submit">Найти товары</button>
+            <button type="submit" style="margin: auto">Найти товары</button>
         </form>
     </div>
 
