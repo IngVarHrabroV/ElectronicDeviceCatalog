@@ -13,6 +13,10 @@
         border:1px solid black;
         border-collapse: collapse;
     }
+
+    button {
+        margin-top: 10px;
+    }
 </style>
 
 <body>
@@ -21,50 +25,17 @@
         <input type="hidden" name="_csrf" value="{{_csrf.token}}">
     </form>
 
-    <div style="margin-top: 10px">
-        <form method="get" action="user">
-            <button type="submit"> Редактировать пользователей</button>
-        </form>
-    </div>
+    <form method="get" action="editUsers">
+        {{#editUsers}}
+        <button type="submit"> Редактировать пользователей</button>
+        {{/editUsers}}
+    </form>
 
-    <div>
-        <p>Добавить товар</p>
-        <form method="post" action="main">
-            <input type="text" name="productName" placeholder="Введите название товара">
-            <input type="text" name="category" placeholder="Введите категорию">
-            <button type="submit">Добавить товар в список</button>
-            <input type="hidden" name="_csrf" value="{{_csrf.token}}">
-        </form>
-
-        <p>Редактировать информацию о товаре</p>
-        <form method="post" action="edit">
-            <input type="number" name="productID" placeholder="Введите ID товара">
-            <br>
-            Что редактируем:
-            <select name="kindOfEditInformation">
-                <option value="editProductName" selected>Имя товара</option>
-                <option value="editProductCategory">Категорию товара</option>
-            </select>
-            ?
-            <br>
-            <input type="text" name="editInformation" placeholder="Введите изменения">
-            <button type="submit">Внести изменения</button>
-            <input type="hidden" name="_csrf" value="{{_csrf.token}}">
-        </form>
-        {{#idForEditDidntFound}}
-            ID = {{editingId}} didn't found!
-        {{/idForEditDidntFound}}
-
-        <p>Удалить товар</p>
-        <form method="post" action="delete">
-            <input type="number" name="productID" placeholder="Введите ID товара">
-            <button type="submit">Удалить товар</button>
-            <input type="hidden" name="_csrf" value="{{_csrf.token}}">
-        </form>
-        {{#idForDeleteDidntFound}}
-            ID = {{deletingId}} didn't found!
-        {{/idForDeleteDidntFound}}
-    </div>
+    <form method="get" action="productsPanel">
+        {{#editProducts}}
+            <button type="submit"> Редактировать товары</button>
+        {{/editProducts}}
+    </form>
 
     <div>
         <p>Найти товар</p>

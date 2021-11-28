@@ -1,7 +1,10 @@
 package com.hrabrov.electronic_device_catalog.controller;
 
 import com.hrabrov.electronic_device_catalog.domain.Product;
+import com.hrabrov.electronic_device_catalog.domain.Role;
+import com.hrabrov.electronic_device_catalog.domain.User;
 import com.hrabrov.electronic_device_catalog.repositories.ProductsRepository;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,8 +26,10 @@ public class MainController {
     }
 
     @GetMapping("/main")
-    public String main(@RequestParam(required = false, defaultValue = "") String filter,
-                       Map<String, Object> model) {
+    public String main(
+            @AuthenticationPrincipal User user,
+            @RequestParam(required = false, defaultValue = "") String filter,
+            Map<String, Object> model) {
 
         Iterable<Product> allProducts = productsRepository.findAll();
 
@@ -38,6 +43,11 @@ public class MainController {
             }
 
             model.put("products", findProducts);
+        }
+
+        if (user.getRoles().contains(Role.ADMIN)) {
+            model.put("editProducts", true);
+            model.put("editUsers", true);
         }
 
         return "main";

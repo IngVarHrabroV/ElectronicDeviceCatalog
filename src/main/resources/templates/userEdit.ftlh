@@ -10,7 +10,7 @@
 <body>
     <h1>Редактор пользователей</h1>
 
-    <form method="post" action="/user">
+    <form method="post" action="/editUsers">
         <input type="text" name="newUsername" value="${user.username}">
 
         <#list roles as role>
