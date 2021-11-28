@@ -1,5 +1,12 @@
 package com.hrabrov.electronic_device_catalog.domain;
 
-public enum Role {
-    USER;
+import org.springframework.security.core.GrantedAuthority;
+
+public enum Role implements GrantedAuthority {
+    USER, ADMIN;
+
+    @Override
+    public String getAuthority() {
+        return name();
+    }
 }
