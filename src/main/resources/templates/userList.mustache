@@ -26,9 +26,7 @@
     {{#users}}
         <tr>
            <td>{{username}}</td>
-            <td>{{#roles}}
-                {{name}}
-            {{/roles}}</td>
+            <td>{{rolesAsString}}</td>
             <td><a href="/editUsers/{{id}}">Редактировать пользователя</a></td>
         </tr>
     {{/users}}
