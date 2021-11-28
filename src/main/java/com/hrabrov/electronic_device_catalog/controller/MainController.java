@@ -54,4 +54,19 @@ public class MainController {
 
         return "main";
     }
+
+    @GetMapping("/compare")
+    public String compareProducts(@RequestParam Map<String, String> idOfCompareProducts,
+                                  Map<String, Object> model) {
+
+        Set<Product> compareProducts = new LinkedHashSet<>();
+
+        for(String id: idOfCompareProducts.keySet()) {
+            compareProducts.add(productsRepository.findById(Integer.valueOf(id))) ;
+        }
+
+        model.put("compareProducts", compareProducts);
+
+        return "compareProducts";
+    }
 }

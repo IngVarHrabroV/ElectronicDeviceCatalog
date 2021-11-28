@@ -57,20 +57,27 @@
     </div>
 
     <h2>Список товаров</h2>
-    <table >
-        <tr>
-            <th>Id</th>
-            <th style="width: auto">Products name</th>
-            <th>Category</th>
-        </tr>
-        {{#products}}
+    <form method="get" action="compare">
+
+        <table>
             <tr>
-                <td>{{id}}</td>
-                <td>{{productName}}</td>
-                <td>{{category}}</td>
+                <th></th>
+                <th>Id</th>
+                <th style="width: auto">Products name</th>
+                <th>Category</th>
             </tr>
-        {{/products}}
-    </table>
+            {{#products}}
+                <tr>
+                    <td><input type="checkbox" name="{{id}}"></td>
+                    <td>{{id}}</td>
+                    <td>{{productName}}</td>
+                    <td>{{category}}</td>
+                </tr>
+            {{/products}}
+        </table>
+
+        <button type="submit">Сравнить товары</button>
+    </form>
 
     {{#productDidntFound}}
         Product didn't found!
