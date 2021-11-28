@@ -34,7 +34,7 @@ public class ProductController {
         Iterable<Product> allProducts = productsRepository.findAll();
         model.put("products", allProducts);
 
-        return "main";
+        return "redirect:/main";
     }
 
     @PostMapping("/deleteProduct")
@@ -42,7 +42,7 @@ public class ProductController {
         if (!productsRepository.existsById(productID)) {
             model.put("idForDeleteDidntFound", true);
             model.put("deletingId", productID);
-            return "main";
+            return "redirect:/main";
         }
 
         productsRepository.delete(productsRepository.findById(productID));
@@ -50,7 +50,7 @@ public class ProductController {
         Iterable<Product> allProducts = productsRepository.findAll();
         model.put("products", allProducts);
 
-        return "main";
+        return "redirect:/main";
     }
 
     @PostMapping("/editProduct")
@@ -62,7 +62,7 @@ public class ProductController {
         if (!productsRepository.existsById(productID)) {
             model.put("idForEditDidntFound", true);
             model.put("editingId", productID);
-            return "main";
+            return "redirect:/main";
         }
 
         Product productForEdit = productsRepository.findById(productID);
@@ -78,6 +78,6 @@ public class ProductController {
         Iterable<Product> allProducts = productsRepository.findAll();
         model.put("products", allProducts);
 
-        return "main";
+        return "redirect:/main";
     }
 }
