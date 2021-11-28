@@ -3,6 +3,7 @@ package com.hrabrov.electronic_device_catalog.controller;
 import com.hrabrov.electronic_device_catalog.domain.Product;
 import com.hrabrov.electronic_device_catalog.repositories.ProductsRepository;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,6 +21,12 @@ public class ProductController {
     @GetMapping("/productsPanel")
     public String productPanel() {
         return "productPanel";
+    }
+
+    @GetMapping("/listOfOrderedProducts")
+    public String listOfOrderedProducts(Model model) {
+        model.addAttribute("listOfOrderedProduct", productsRepository.findByIsOrder(true));
+        return "listOfOrderedProducts";
     }
 
     @PostMapping("/addProduct")

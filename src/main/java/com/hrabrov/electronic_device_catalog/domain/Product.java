@@ -11,6 +11,7 @@ public class Product {
 
     private String productName;
     private String category;
+    private boolean isOrder = false;
 
     public Product() {}
 
@@ -41,5 +42,13 @@ public class Product {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public boolean isOrder() {
+        return isOrder;
+    }
+
+    public void setOrder(boolean order) {
+        isOrder = order;
     }
 }

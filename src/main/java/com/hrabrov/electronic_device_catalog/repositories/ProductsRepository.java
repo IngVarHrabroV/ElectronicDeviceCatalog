@@ -8,5 +8,6 @@ import java.util.List;
 public interface ProductsRepository extends CrudRepository<Product, Long> {
     List<Product> findByCategory(String category);
     Product findById(Integer id);
+    List<Product> findByIsOrder(Boolean order);
     boolean existsById(Integer id);
 }

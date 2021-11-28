@@ -6,10 +6,15 @@ import com.hrabrov.electronic_device_catalog.domain.User;
 import com.hrabrov.electronic_device_catalog.repositories.ProductsRepository;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.*;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 @Controller
 public class MainController {
@@ -68,5 +73,41 @@ public class MainController {
         model.put("compareProducts", compareProducts);
 
         return "compareProducts";
+    }
+
+    @GetMapping("/orderProduct")
+    public String buyProduct(@RequestParam Map<String, String> idForOrderProduct, Model model) {
+        Set<Product> orderProducts = new LinkedHashSet<>();
+
+        for(String id: idForOrderProduct.keySet()) {
+            orderProducts.add(productsRepository.findById(Integer.valueOf(id))) ;
+        }
+
+        model.addAttribute("orderProducts", orderProducts);
+
+        return "orderProduct";
+    }
+
+    @PostMapping("/shipment")
+    public String shipmentProduct(@RequestParam Map<String, String> idForOrderProduct) {
+
+        for(String id: idForOrderProduct.keySet()) {
+            if (isNumber(id)) {
+                Product product = productsRepository.findById(Integer.valueOf(id));
+                product.setOrder(true);
+                productsRepository.save(product);
+            }
+        }
+
+        return "redirect:/main";
+    }
+
+    private boolean isNumber(String potentialNumber) {
+        try {
+            Integer.parseInt(potentialNumber);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 }

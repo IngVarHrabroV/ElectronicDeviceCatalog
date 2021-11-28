@@ -46,6 +46,12 @@
                 <button type="submit"> Добавить/Редактировать товары</button>
             {{/editProducts}}
         </form>
+
+        <form method="get" action="listOfOrderedProducts">
+            {{#editProducts}}
+                <button type="submit"> Просмотреть заказанные товары</button>
+            {{/editProducts}}
+        </form>
     </div>
 
     <div>
@@ -57,14 +63,15 @@
     </div>
 
     <h2>Список товаров</h2>
-    <form method="get" action="compare">
 
+    <form method="get" action="compare" id="compareId">
         <table>
             <tr>
                 <th></th>
                 <th>Id</th>
-                <th style="width: auto">Products name</th>
-                <th>Category</th>
+                <th style="width: auto">Имя продукта</th>
+                <th>Категория</th>
+                <th>Заказать товар</th>
             </tr>
             {{#products}}
                 <tr>
@@ -72,12 +79,17 @@
                     <td>{{id}}</td>
                     <td>{{productName}}</td>
                     <td>{{category}}</td>
+                    <td>
+                        <form method="get" action="orderProduct" id="order">
+                            <button type="submit" form="order" name="{{id}}">Оформить заявку</button>
+                        </form>
+                    </td>
                 </tr>
             {{/products}}
         </table>
-
-        <button type="submit">Сравнить товары</button>
     </form>
+
+    <button type="submit" form="compareId">Сравнить товары</button>
 
     {{#productDidntFound}}
         Product didn't found!
