@@ -3,6 +3,7 @@ package com.hrabrov.electronic_device_catalog.controller;
 import com.hrabrov.electronic_device_catalog.domain.Product;
 import com.hrabrov.electronic_device_catalog.repositories.ProductsRepository;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -14,6 +15,11 @@ public class ProductController {
 
     public ProductController(ProductsRepository productsRepository) {
         this.productsRepository = productsRepository;
+    }
+
+    @GetMapping("/productsPanel")
+    public String productPanel() {
+        return "productPanel";
     }
 
     @PostMapping("/addProduct")

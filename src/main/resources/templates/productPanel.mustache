@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Продуктовая панель</title>
+</head>
+<body>
+<h1>Продуктовая панель</h1>
+
+<div>
+    <p>Добавить товар</p>
+    <form method="post" action="addProduct">
+        <input type="text" name="productName" placeholder="Введите название товара">
+        <input type="text" name="category" placeholder="Введите категорию">
+        <button type="submit">Добавить товар в список</button>
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}">
+    </form>
+
+    <p>Редактировать информацию о товаре</p>
+    <form method="post" action="editProduct">
+        <input type="number" name="productID" placeholder="Введите ID товара">
+        <br>
+        Что редактируем:
+        <select name="kindOfEditInformation">
+            <option value="editProductName" selected>Имя товара</option>
+            <option value="editProductCategory">Категорию товара</option>
+        </select>
+        ?
+        <br>
+        <input type="text" name="editInformation" placeholder="Введите изменения">
+        <button type="submit">Внести изменения</button>
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}">
+    </form>
+    {{#idForEditDidntFound}}
+        ID = {{editingId}} didn't found!
+    {{/idForEditDidntFound}}
+
+    <p>Удалить товар</p>
+    <form method="post" action="deleteProduct">
+        <input type="number" name="productID" placeholder="Введите ID товара">
+        <button type="submit">Удалить товар</button>
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}">
+    </form>
+    {{#idForDeleteDidntFound}}
+        ID = {{deletingId}} didn't found!
+    {{/idForDeleteDidntFound}}
+</div>
+
+<div style="margin-top: 10px">
+    <form method="get" action="main">
+        <button type="submit"> Вернуться на главную</button>
+    </form>
+</div>
+
+</body>
+</html>
