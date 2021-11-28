@@ -22,25 +22,31 @@
 <body>
     <h1>Главная страница</h1>
 
-    <b>Имя пользователя:</b> {{username}} <br>
-    <b>Права доступа:</b> {{roles}}
+    <div style="float: left; margin-right: 10px">
+        <b>Имя пользователя:</b> {{username}} <br>
+        <b>Права доступа:</b> {{roles}}
+    </div>
 
-    <form method="post" action="logout" >
-        <input type="submit" value="Sign Out"/>
-        <input type="hidden" name="_csrf" value="{{_csrf.token}}">
-    </form>
+    <div style="margin-top: 30px">
+        <form method="post" action="logout" >
+            <input type="submit" value="Sign Out"/>
+            <input type="hidden" name="_csrf" value="{{_csrf.token}}">
+        </form>
+    </div>
 
-    <form method="get" action="editUsers">
-        {{#editUsers}}
-        <button type="submit"> Редактировать пользователей</button>
-        {{/editUsers}}
-    </form>
+    <div style="margin-top: 10px">
+        <form method="get" action="editUsers">
+            {{#editUsers}}
+            <button type="submit"> Редактировать пользователей</button>
+            {{/editUsers}}
+        </form>
 
-    <form method="get" action="productsPanel">
-        {{#editProducts}}
-            <button type="submit"> Редактировать товары</button>
-        {{/editProducts}}
-    </form>
+        <form method="get" action="productsPanel">
+            {{#editProducts}}
+                <button type="submit"> Добавить/Редактировать товары</button>
+            {{/editProducts}}
+        </form>
+    </div>
 
     <div>
         <h2>Найти товар</h2>
