@@ -11,34 +11,45 @@
 <h1>Продуктовая панель</h1>
 
 <div>
-    <p>Добавить товар</p>
+    <h2>Добавить товар</h2>
     <form method="post" action="addProduct">
         <input type="text" name="productName" placeholder="Введите название товара">
         <input type="text" name="category" placeholder="Введите категорию">
         <button type="submit">Добавить товар в список</button>
         <input type="hidden" name="_csrf" value="{{_csrf.token}}">
     </form>
+</div>
 
-    <p>Редактировать информацию о товаре</p>
+<div>
+    <h2>Редактировать информацию о товаре</h2>
     <form method="post" action="editProduct">
-        <input type="number" name="productID" placeholder="Введите ID товара">
-        <br>
-        Что редактируем:
-        <select name="kindOfEditInformation">
-            <option value="editProductName" selected>Имя товара</option>
-            <option value="editProductCategory">Категорию товара</option>
+        <div>Введите ID товара для удаления:
+        <input type="number" name="productID" placeholder="ID товара">
+        </div>
+
+        <div>
+        Хотим редактировать:
+        <select name="kindOfEditInformation" style="margin: 10px 0">
+            <option value="editProductName" selected>имя товара</option>
+            <option value="editProductCategory">категорию товара</option>
         </select>
-        ?
-        <br>
-        <input type="text" name="editInformation" placeholder="Введите изменения">
-        <button type="submit">Внести изменения</button>
+        .
+        </div>
+
+        <div>
+            <input type="text" name="editInformation" placeholder="Введите изменения">
+            <button type="submit">Внести изменения</button>
+        </div>
+
         <input type="hidden" name="_csrf" value="{{_csrf.token}}">
     </form>
     {{#idForEditDidntFound}}
         ID = {{editingId}} didn't found!
     {{/idForEditDidntFound}}
+</div>
 
-    <p>Удалить товар</p>
+<div>
+    <h2>Удалить товар</h2>
     <form method="post" action="deleteProduct">
         <input type="number" name="productID" placeholder="Введите ID товара">
         <button type="submit">Удалить товар</button>
@@ -49,11 +60,11 @@
     {{/idForDeleteDidntFound}}
 </div>
 
-<div style="margin-top: 10px">
-    <form method="get" action="main">
-        <button type="submit"> Вернуться на главную</button>
-    </form>
-</div>
+
+<form method="get" action="main">
+    <button type="submit" style="margin-top: 50px"> Вернуться на главную</button>
+</form>
+
 
 </body>
 </html>
